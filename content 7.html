@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Lesson Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .lesson-content {
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Lesson Content -->
+        <div class="lesson-content">
+            <!-- Example content: Replace with actual lesson content -->
+            <h1>Lesson Title</h1>
+            <p>Here is the lesson content. It might include text, images, audio, and interactive elements.</p>
+            <!-- Example image -->
+            <img src="example-image.jpg" alt="Lesson Image" style="width: 100%; max-width: 600px;">
+            <!-- Example audio -->
+            <audio controls>
+                <source src="example-audio.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <!-- Example interactive exercise -->
+            <p>Interactive exercise: <input type="text" placeholder="Type your answer here"></p>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="buttons">
+            <button id="previous-btn">Previous</button>
+            <button id="next-btn">Next</button>
+            <button id="complete-lesson-btn">Complete Lesson</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for button functionalities (for demo purposes)
+        document.getElementById('previous-btn').addEventListener('click', function() {
+            alert('Go to previous part of the lesson');
+            // Implement functionality to navigate to the previous part of the lesson
+        });
+
+        document.getElementById('next-btn').addEventListener('click', function() {
+            alert('Go to next part of the lesson');
+            // Implement functionality to navigate to the next part of the lesson
+        });
+
+        document.getElementById('complete-lesson-btn').addEventListener('click', function() {
+            alert('Lesson marked as complete');
+            // Implement functionality to mark the lesson as complete and redirect to the main screen
+        });
+    </script>
+</body>
+</html>

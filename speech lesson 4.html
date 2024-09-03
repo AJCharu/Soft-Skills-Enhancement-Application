@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech and Pronunciation Lessons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .lesson-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .lesson-list li {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .lesson-list button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .filter-options {
+            margin-bottom: 20px;
+        }
+        .filter-options label {
+            margin-right: 10px;
+            font-size: 1em;
+        }
+        .filter-options select {
+            padding: 5px;
+            font-size: 1em;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Speech Lessons Section -->
+        <div id="speech-lessons" class="section">
+            <h2>Speech Lessons</h2>
+
+            <!-- Search Bar -->
+            <input type="text" id="search-speech" class="search-bar" placeholder="Search speech lessons...">
+
+            <!-- Filter Options -->
+            <div class="filter-options">
+                <label for="difficulty-speech">Filter by difficulty:</label>
+                <select id="difficulty-speech">
+                    <option value="all">All</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
+
+            <!-- Lesson List -->
+            <ul class="lesson-list">
+                <li>
+                    <span>Speech Lesson 1: Basics of Public Speaking</span>
+                    <button>Start Lesson</button>
+                </li>
+                <li>
+                    <span>Speech Lesson 2: Intermediate Speech Techniques</span>
+                    <button>Start Lesson</button>
+                </li>
+                <li>
+                    <span>Speech Lesson 3: Advanced Speech Crafting</span>
+                    <button>Start Lesson</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Pronunciation Lessons Section -->
+        <div id="pronunciation-lessons" class="section">
+            <h2>Pronunciation Lessons</h2>
+
+            <!-- Search Bar -->
+            <input type="text" id="search-pronunciation" class="search-bar" placeholder="Search pronunciation lessons...">
+
+            <!-- Filter Options -->
+            <div class="filter-options">
+                <label for="difficulty-pronunciation">Filter by difficulty:</label>
+                <select id="difficulty-pronunciation">
+                    <option value="all">All</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
+
+            <!-- Lesson List -->
+            <ul class="lesson-list">
+                <li>
+                    <span>Pronunciation Lesson 1: Basic Sounds</span>
+                    <button>Start Lesson</button>
+                </li>
+                <li>
+                    <span>Pronunciation Lesson 2: Intermediate Word Pronunciation</span>
+                    <button>Start Lesson</button>
+                </li>
+                <li>
+                    <span>Pronunciation Lesson 3: Advanced Accent Training</span>
+                    <button>Start Lesson</button>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+<script>
+    // Function to filter lessons based on search query and difficulty
+    function filterLessons(searchId, difficultyId, listId) {
+        const searchInput = document.getElementById(searchId).value.toLowerCase();
+        const difficultyFilter = document.getElementById(difficultyId).value;
+        const lessonList = document.getElementById(listId);
+        const lessons = lessonList.getElementsByTagName('li');
+        
+        Array.from(lessons).forEach(lesson => {
+            const lessonText = lesson.textContent.toLowerCase();
+            const lessonDifficulty = lesson.getAttribute('data-difficulty');
+            const matchesSearch = lessonText.includes(searchInput);
+            const matchesDifficulty = difficultyFilter === 'all' || difficultyFilter === lessonDifficulty;
+            
+            if (matchesSearch && matchesDifficulty) {
+                lesson.style.display = '';
+            } else {
+                lesson.style.display = 'none';
+            }
+        });
+    }
+
+    // Event listeners for Speech Lessons
+    document.getElementById('search-speech').addEventListener('input', () => {
+        filterLessons('search-speech', 'difficulty-speech', 'speech-lesson-list');
+    });
+    document.getElementById('difficulty-speech').addEventListener('change', () => {
+        filterLessons('search-speech', 'difficulty-speech', 'speech-lesson-list');
+    });
+
+    // Event listeners for Pronunciation Lessons
+    document.getElementById('search-pronunciation').addEventListener('input', () => {
+        filterLessons('search-pronunciation', 'difficulty-pronunciation', 'pronunciation-lesson-list');
+    });
+    document.getElementById('difficulty-pronunciation').addEventListener('change', () => {
+        filterLessons('search-pronunciation', 'difficulty-pronunciation', 'pronunciation-lesson-list');
+    });
+</script>
+</body>
+</html>

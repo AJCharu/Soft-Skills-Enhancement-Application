@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Lessons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .lesson-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .lesson-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .lesson-list li h3 {
+            margin: 0 0 5px 0;
+        }
+        .lesson-list button {
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .filter-options {
+            margin-bottom: 20px;
+        }
+        .filter-options label {
+            margin-right: 10px;
+            font-size: 1em;
+        }
+        .filter-options input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Vocabulary Lessons Main Screen -->
+        <div id="vocabulary-lessons" class="section">
+            <h2>Vocabulary Lessons</h2>
+
+            <!-- Search Bar -->
+            <input type="text" id="search-lessons" class="search-bar" placeholder="Search vocabulary lessons...">
+
+            <!-- Filter Options -->
+            <div class="filter-options">
+                <label>Filter by difficulty level:</label>
+                <input type="checkbox" id="beginner" name="difficulty" value="beginner">
+                <label for="beginner">Beginner</label>
+                <input type="checkbox" id="intermediate" name="difficulty" value="intermediate">
+                <label for="intermediate">Intermediate</label>
+                <input type="checkbox" id="advanced" name="difficulty" value="advanced">
+                <label for="advanced">Advanced</label>
+            </div>
+
+            <!-- Lesson List -->
+            <ul class="lesson-list">
+                <li>
+                    <h3>Lesson 1: Basic Vocabulary</h3>
+                    <p>Description: Learn basic vocabulary words.</p>
+                    <p>Difficulty: Beginner</p>
+                    <button onclick="location.href='#lesson-detail'">Start Lesson</button>
+                </li>
+                <li>
+                    <h3>Lesson 2: Intermediate Vocabulary</h3>
+                    <p>Description: Build on your basic vocabulary.</p>
+                    <p>Difficulty: Intermediate</p>
+                    <button onclick="location.href='#lesson-detail'">Start Lesson</button>
+                </li>
+                <li>
+                    <h3>Lesson 3: Advanced Vocabulary</h3>
+                    <p>Description: Master advanced vocabulary words.</p>
+                    <p>Difficulty: Advanced</p>
+                    <button onclick="location.href='#lesson-detail'">Start Lesson</button>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .content {
+            margin: 20px 0;
+        }
+        .start-lesson {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Vocabulary Lesson Detail Screen -->
+        <div id="lesson-detail" class="section">
+            <h2>Lesson 1: Basic Vocabulary</h2>
+
+            <div class="content">
+                <p>Description: Learn basic vocabulary words that are essential for daily communication.</p>
+                <p>Difficulty: Beginner</p>
+                <p>Lesson Content: The lesson includes a list of common vocabulary words, their meanings, and usage examples.</p>
+            </div>
+
+            <!-- Start Lesson Button -->
+            <button class="start-lesson" onclick="location.href='#lesson-content'">Start Lesson</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Search functionality
+        const searchInput = document.getElementById('search-lessons');
+        const lessonList = document.getElementById('lesson-list');
+        const lessons = lessonList.getElementsByTagName('li');
+
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            for (let i = 0; i < lessons.length; i++) {
+                const lessonTitle = lessons[i].querySelector('h3').textContent.toLowerCase();
+                const lessonDescription = lessons[i].querySelector('p').textContent.toLowerCase();
+                const isMatch = lessonTitle.includes(query) || lessonDescription.includes(query);
+                lessons[i].style.display = isMatch ? '' : 'none';
+            }
+        });
+
+        // Filter functionality
+        const checkboxes = document.querySelectorAll('.filter-options input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedDifficulties = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+                for (let i = 0; i < lessons.length; i++) {
+                    const lessonDifficulty = lessons[i].getAttribute('data-difficulty');
+                    const shouldDisplay = selectedDifficulties.length === 0 || selectedDifficulties.includes(lessonDifficulty);
+                    lessons[i].style.display = shouldDisplay ? '' : 'none';
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

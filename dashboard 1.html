@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="Dashboard.css">
+    <link rel="icon" href="logo.jpeg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            padding: 15px;
+            display: block;
+            font-size: 18px;
+        }
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+        .header {
+            margin-left: 250px;
+            background-color: #f1f1f1;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header .user-info {
+            float: right;
+        }
+        .header .user-info p {
+            margin: 0;
+        }
+        .header .user-info a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <a href="#">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">Messages</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+    
+    <div class="header">
+        <h1>Welcome to Your Dashboard</h1>
+        <div class="user-info">
+            <p>Logged in as: <a href="#">User</a></p>
+        </div>
+    </div>
+    
+    <div class="content">
+        <h2>Main Content Area</h2>
+        <p>This is where the main content will go. You can add charts, tables, or other elements here based on what you need for your dashboard.</p>
+        <!-- Add your main content here -->
+    </div>
+</body>
+</html>
+<script>
+    // Function to handle click events on sidebar links
+    function handleSidebarLinkClick(event) {
+        event.preventDefault(); // Prevent default link behavior
+        alert(`You clicked on: ${event.target.textContent}`);
+    }
+
+    // Add event listeners to all sidebar links
+    document.querySelectorAll('.sidebar a').forEach(link => {
+        link.addEventListener('click', handleSidebarLinkClick);
+    });
+</script>

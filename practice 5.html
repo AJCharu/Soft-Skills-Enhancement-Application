@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Tests and Test Reports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .list li {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .list button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .filter-options {
+            margin-bottom: 20px;
+        }
+        .filter-options label {
+            margin-right: 10px;
+            font-size: 1em;
+        }
+        .filter-options select {
+            padding: 5px;
+            font-size: 1em;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Practice Tests Section -->
+        <div id="practice-tests" class="section">
+            <h2>Practice Tests</h2>
+
+            <!-- Search Bar -->
+            <input type="text" id="search-tests" class="search-bar" placeholder="Search practice tests...">
+
+            <!-- Filter Options -->
+            <div class="filter-options">
+                <label for="filter-tests">Filter by test type:</label>
+                <select id="filter-tests">
+                    <option value="all">All</option>
+                    <option value="vocabulary">Vocabulary</option>
+                    <option value="speech">Speech</option>
+                    <option value="pronunciation">Pronunciation</option>
+                </select>
+            </div>
+
+            <!-- Test List -->
+            <ul class="list">
+                <li>
+                    <span>Vocabulary Test 1</span>
+                    <button>Start Test</button>
+                </li>
+                <li>
+                    <span>Speech Test 1</span>
+                    <button>Start Test</button>
+                </li>
+                <li>
+                    <span>Pronunciation Test 1</span>
+                    <button>Start Test</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Test Reports Section -->
+        <div id="test-reports" class="section">
+            <h2>Test Reports</h2>
+
+            <!-- Search Bar -->
+            <input type="text" id="search-reports" class="search-bar" placeholder="Search test reports...">
+
+            <!-- Filter Options -->
+            <div class="filter-options">
+                <label for="filter-reports">Filter by:</label>
+                <select id="filter-reports">
+                    <option value="all">All</option>
+                    <option value="date">Date</option>
+                    <option value="vocabulary">Vocabulary</option>
+                    <option value="speech">Speech</option>
+                    <option value="pronunciation">Pronunciation</option>
+                </select>
+            </div>
+
+            <!-- Report List -->
+            <ul class="list">
+                <li>
+                    <span>Vocabulary Test 1 Report - 2024-09-01</span>
+                    <button>View Report</button>
+                </li>
+                <li>
+                    <span>Speech Test 1 Report - 2024-08-25</span>
+                    <button>View Report</button>
+                </li>
+                <li>
+                    <span>Pronunciation Test 1 Report - 2024-08-20</span>
+                    <button>View Report</button>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Function to filter items based on search query and filter criteria
+        function filterItems(searchId, filterId, listId) {
+            const searchInput = document.getElementById(searchId).value.toLowerCase();
+            const filterValue = document.getElementById(filterId).value;
+            const list = document.getElementById(listId);
+            const items = list.getElementsByTagName('li');
+            
+            Array.from(items).forEach(item => {
+                const itemText = item.textContent.toLowerCase();
+                const itemType = item.getAttribute('data-type');
+                const itemDate = item.getAttribute('data-date');
+                const matchesSearch = itemText.includes(searchInput);
+                const matchesFilter = filterValue === 'all' || filterValue === itemType;
+
+                if (matchesSearch && matchesFilter) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Event listeners for Practice Tests
+        document.getElementById('search-tests').addEventListener('input', () => {
+            filterItems('search-tests', 'filter-tests', 'test-list');
+        });
+        document.getElementById('filter-tests').addEventListener('change', () => {
+            filterItems('search-tests', 'filter-tests', 'test-list');
+        });
+
+        // Event listeners for Test Reports
+        document.getElementById('search-reports').addEventListener('input', () => {
+            filterItems('search-reports', 'filter-reports', 'report-list');
+        });
+        document.getElementById('filter-reports').addEventListener('change', () => {
+            filterItems('search-reports', 'filter-reports', 'report-list');
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Lesson Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .lesson-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .lesson-description {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .difficulty-level {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .lesson-content {
+            margin-bottom: 20px;
+        }
+        .lesson-content img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .lesson-content audio {
+            display: block;
+            margin-bottom: 15px;
+        }
+        .start-lesson {
+            text-align: center;
+        }
+        .start-lesson button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .start-lesson button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Vocabulary Lesson Detail</h1>
+
+    <!-- Dynamic Content Starts Here -->
+    <div id="lesson-title" class="lesson-title"></div>
+    <div id="lesson-description" class="lesson-description"></div>
+    <div id="difficulty-level" class="difficulty-level"></div>
+
+    <div id="lesson-content" class="lesson-content"></div>
+    
+    <div class="start-lesson">
+        <button onclick="startLesson()">Start Lesson</button>
+    </div>
+    <!-- Dynamic Content Ends Here -->
+
+</div>
+
+<script>
+    // Sample lesson data (in a real scenario, this could come from an API or database)
+    const lessonData = {
+        title: "Lesson 1: Basic Vocabulary",
+        description: "Learn the essential words for beginners, including basic greetings, common phrases, and everyday vocabulary.",
+        difficulty: "Beginner",
+        content: `
+            <p>This lesson will cover the following topics:</p>
+            <ul>
+                <li>Greetings (Hello, Goodbye, etc.)</li>
+                <li>Common Phrases (How are you?, Thank you, etc.)</li>
+                <li>Everyday Vocabulary (Food, Objects, etc.)</li>
+            </ul>
+            <p>Here are some examples:</p>
+            <img src="example-image.jpg" alt="Example Image">
+            <audio controls>
+                <source src="example-audio.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        `
+    };
+
+    // Function to populate lesson details
+    function populateLessonDetails(data) {
+        document.getElementById('lesson-title').textContent = data.title;
+        document.getElementById('lesson-description').textContent = data.description;
+        document.getElementById('difficulty-level').textContent = `Difficulty Level: ${data.difficulty}`;
+        document.getElementById('lesson-content').innerHTML = data.content;
+    }
+
+    // Initialize lesson details
+    populateLessonDetails(lessonData);
+
+    // Function to handle the Start Lesson button click
+    function startLesson() {
+        // Redirect to the Vocabulary Lesson Content Screen
+        window.location.href = "lesson_content.html";
+    }
+</script>
+
+</body>
+</html>

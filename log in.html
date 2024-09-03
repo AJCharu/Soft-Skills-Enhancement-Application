@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XENOS</title>
+    <link rel="stylesheet" type="text/css" href="Login.css">
+    <link rel="icon" href="logo.jpeg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        
+        .form { display: none; }
+        .form.active { display: block; }
+        #login, #signup, #forgotPassword { padding: 20px; }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="form active" id="login">
+            <div class="box">
+                <h3>LOGIN</h3>
+                <div class="social-container">
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+                <div id="loginMessage"></div>
+                <form id="loginForm">
+                    <input class="input" type="text" id="loginUsername" placeholder="Username or Email" required><br>
+                    <input class="input" type="password" id="loginPassword" placeholder="Password" required><br>
+                    <input class="button" type="submit" value="LOGIN"><br>
+                    <a id="oksignup" href="#" onclick="showSignup()">Sign Up Here</a> | 
+                    <a id="forgotPasswordLink" href="#" onclick="showForgotPassword()">Forgot Password?</a>
+                </form>
+            </div>
+        </div>
+
+        <div class="form" id="signup">
+            <div class="box">
+                <h3>SIGN UP</h3>
+                <div class="social-container">
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+                <div id="signupMessage"></div>
+                <form id="signupForm">
+                    <input class="input" type="text" id="signupUsername" placeholder="Username or Email" required><br>
+                    <input class="input" type="password" id="signupPassword" placeholder="Password" required><br>
+                    <input class="input" type="password" id="signupConfirmPassword" placeholder="Confirm Password" required><br>
+                    <input class="button" type="submit" value="SIGN UP"><br>
+                    <a id="oklogin" href="#" onclick="showLogin()">Login Here</a>
+                </form>
+            </div>
+        </div>
+
+        <div class="form" id="forgotPassword">
+            <div class="box">
+                <h3>FORGOT PASSWORD</h3>
+                <div id="Recover Password"></div>
+                <form id="forgotPasswordForm">
+                    <input class="input" type="email" id="Registered Email" placeholder="Enter your email" required><br>
+                    <input class="button" type="Submit"><br>
+                    <a id="backToLogin" href="#" onclick="showLogin()">Back to Login</a>
+                    <a id="Reset password" href='#' onclick="showResetPassword()">| Reset Password</a>
+                </form>
+            </div>
+        </div>
+        <div class="form" id="resetPassword">
+            <div class="box">
+                <h3>RESET PASSWORD</h3>
+                <div id="resetPassword"></div>
+                <form id="resetPasswordForm">
+                    <input class="input" type="password" id="newPassword" placeholder="New Password" required><br>
+                    <input class="input" type="password" id="confirmPassword" placeholder="Confirm New Password" required><br>
+                    <input class="button" type="submit" value="Reset Password"><br>
+                    <a id="backToForgotPassword" href="#" onclick="showForgotPassword()">Back to Forgot Password</a>
+                </form>
+            </div>
+        </div>
+    </div>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+ function showLogin() {
+            $('.form').removeClass('active');
+            $('#login').addClass('active');
+        }
+
+        function showSignup() {
+            $('.form').removeClass('active');
+            $('#signup').addClass('active');
+        }
+
+        function showForgotPassword() {
+            $('.form').removeClass('active');
+            $('#forgotPassword').addClass('active');
+        }
+
+        function showResetPassword() {
+            $('.form').removeClass('active');
+            $('#resetPassword').addClass('active');
+        }
+
+        $(document).ready(function() {
+            $('#loginForm').submit(function(event) {
+                event.preventDefault();
+                // Handle login logic with AJAX or other methods
+                $('#loginMessage').text("Login form submitted.");
+            });
+
+            $('#signupForm').submit(function(event) {
+                event.preventDefault();
+                // Handle signup logic with AJAX or other methods
+                $('#signupMessage').text("Signup form submitted.");
+            });
+
+            $('#forgotPasswordForm').submit(function(event) {
+                event.preventDefault();
+                // Handle forgot password logic with AJAX or other methods
+                $('#forgotPasswordMessage').text("Password reset request submitted.");
+            });
+        });   
+</script>
+</body>
+</html>

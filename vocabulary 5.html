@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Lessons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .filter-options {
+            margin-bottom: 20px;
+        }
+        .filter-options label {
+            margin-right: 10px;
+        }
+        .lesson-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .lesson-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .lesson-item h3 {
+            margin: 0 0 10px 0;
+        }
+        .lesson-item p {
+            margin: 5px 0;
+        }
+        .start-lesson {
+            margin-top: 10px;
+        }
+        .start-lesson button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .start-lesson button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Vocabulary Lessons</h1>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for lessons..." onkeyup="filterLessons()">
+    </div>
+
+    <div class="filter-options">
+        <label><input type="checkbox" id="beginnerFilter" onclick="filterLessons()"> Beginner</label>
+        <label><input type="checkbox" id="intermediateFilter" onclick="filterLessons()"> Intermediate</label>
+        <label><input type="checkbox" id="advancedFilter" onclick="filterLessons()"> Advanced</label>
+    </div>
+
+    <ul class="lesson-list" id="lessonList">
+        <!-- Lesson Item 1 -->
+        <li class="lesson-item" data-difficulty="beginner">
+            <h3>Lesson 1: Basic Vocabulary</h3>
+            <p>Learn the essential words for beginners.</p>
+            <p>Difficulty Level: Beginner</p>
+            <div class="start-lesson">
+                <button onclick="startLesson(1)">Start Lesson</button>
+            </div>
+        </li>
+
+        <!-- Lesson Item 2 -->
+        <li class="lesson-item" data-difficulty="intermediate">
+            <h3>Lesson 2: Intermediate Vocabulary</h3>
+            <p>Expand your vocabulary with more challenging words.</p>
+            <p>Difficulty Level: Intermediate</p>
+            <div class="start-lesson">
+                <button onclick="startLesson(2)">Start Lesson</button>
+            </div>
+        </li>
+
+        <!-- Lesson Item 3 -->
+        <li class="lesson-item" data-difficulty="advanced">
+            <h3>Lesson 3: Advanced Vocabulary</h3>
+            <p>Master complex and sophisticated vocabulary.</p>
+            <p>Difficulty Level: Advanced</p>
+            <div class="start-lesson">
+                <button onclick="startLesson(3)">Start Lesson</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script>
+    function filterLessons() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const beginnerFilter = document.getElementById('beginnerFilter').checked;
+        const intermediateFilter = document.getElementById('intermediateFilter').checked;
+        const advancedFilter = document.getElementById('advancedFilter').checked;
+        const lessons = document.querySelectorAll('.lesson-item');
+
+        lessons.forEach(lesson => {
+            const title = lesson.querySelector('h3').innerText.toLowerCase();
+            const difficulty = lesson.getAttribute('data-difficulty');
+
+            const matchesSearch = title.includes(searchInput);
+            const matchesFilter =
+                (beginnerFilter && difficulty === 'beginner') ||
+                (intermediateFilter && difficulty === 'intermediate') ||
+                (advancedFilter && difficulty === 'advanced') ||
+                (!beginnerFilter && !intermediateFilter && !advancedFilter);
+
+            if (matchesSearch && matchesFilter) {
+                lesson.style.display = 'block';
+            } else {
+                lesson.style.display = 'none';
+            }
+        });
+    }
+
+    function startLesson(lessonId) {
+        window.location.href = lesson_detail.html?lessonId=${lessonId};
+    }
+</script>
+
+</body>
+</html>
